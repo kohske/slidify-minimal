@@ -1,0 +1,381 @@
+splitter_d
+plyr:::splitter_d
+library(plyr)#
+#
+ddply(ddply(data.frame(.id = 1:nrow(so_alt), so_alt), .(.id), function(x) {#
+    d1 <- as.Date(x$Start)#
+    d2 <- as.Date(x$Stop)#
+    if (d1 == d2) data.frame(date = d1, min = x$Minutes)#
+    else {#
+        ret <- rbind(data.frame(date=d1, min = difftime(as.POSIXct(paste(d1+1, "00:00:00")), as.POSIXct(x$Start), units = "mins")), #
+        data.frame(date=d2, min=difftime(as.POSIXct(x$Stop), as.POSIXct(paste(d2, "00:00:00")), units = "mins")))#
+        if (d2-d1>1) {#
+            ret <- rbind(ret, data.frame(date = seq(d1+1, d2-1, by = "day"), min = 60*24))#
+        }#
+        ret#
+    }#
+}), .(Case, date), summarise, min = sum(min))
+ddply(data.frame(.id = 1:nrow(so_alt), so_alt), .(.id), function(x) {#
+    d1 <- as.Date(x$Start)#
+    d2 <- as.Date(x$Stop)#
+    if (d1 == d2) data.frame(date = d1, min = x$Minutes)#
+    else {#
+        ret <- rbind(data.frame(date=d1, min = difftime(as.POSIXct(paste(d1+1, "00:00:00")), as.POSIXct(x$Start), units = "mins")), #
+        data.frame(date=d2, min=difftime(as.POSIXct(x$Stop), as.POSIXct(paste(d2, "00:00:00")), units = "mins")))#
+        if (d2-d1>1) {#
+            ret <- rbind(ret, data.frame(date = seq(d1+1, d2-1, by = "day"), min = 60*24))#
+        }#
+        ret#
+    }#
+})
+library(plyr)#
+#
+ddply(ddply(data.frame(.id = 1:nrow(so_alt), so_alt), .(.id, Case), function(x) {#
+    d1 <- as.Date(x$Start)#
+    d2 <- as.Date(x$Stop)#
+    if (d1 == d2) data.frame(date = d1, min = x$Minutes)#
+    else {#
+        ret <- rbind(data.frame(date=d1, min = difftime(as.POSIXct(paste(d1+1, "00:00:00")), as.POSIXct(x$Start), units = "mins")), #
+        data.frame(date=d2, min=difftime(as.POSIXct(x$Stop), as.POSIXct(paste(d2, "00:00:00")), units = "mins")))#
+        if (d2-d1>1) {#
+            ret <- rbind(ret, data.frame(date = seq(d1+1, d2-1, by = "day"), min = 60*24))#
+        }#
+        ret#
+    }#
+}), .(Case, date), summarise, min = sum(min))
+options(max.print=20)#
+print(cars)
+print(list(cars, cars))
+help sink
+?sink
+library(ggplot2)
+?geom_bar
+c <- ggplot(mtcars, aes(factor(cyl)))
+ggplot(mtcars, aes(factor(cyl)))
+ggplot(mtcars, aes(factor(cyl))) + gemo_bar()
+ggplot(mtcars, aes(factor(cyl))) + geom_bar()
+qplot(factor(cyl), data=mtcars, geom="bar", fill=factor(cyl))
+qplot(factor(cyl), data=mtcars, geom="bar", fill=factor(cyl)) + theme_minimal()
+theme_minimal
+?source
+?attach
+10460000/60/60
+10460000 *6/24*0.2
+10460000 * 3 * 0.5
+0.25*0.2
+3*0.5
+2881440000 / 523000
+200*667
+200*667*6
+200*667*6*3.6
+1280000/523
+200*667*24
+cls <- setRefClass("cls", methods = list( f1 = function() {1},
+f2 = function() {2}))
+cls
+a1 <- new("cls")
+a1$f1
+f1[["f1"]]
+a1[["f1"]]
+a1["f1"]
+?cor.test
+?xtabs
+library(ggplto2)
+library(ggplot2)
+?stat_summary_hex
+p <-ggplot(diamonds[1:500, ], aes(carat, depth, z = price)) + stat_summary_hex()
+p <-ggplot(diamonds[1:500, ], aes(carat, depth, z = price)) + stat_summary_hex()#
+g <- ggplot_build(p)
+library(hexbin)
+install.packages('hexbin')
+p <-ggplot(diamonds[1:500, ], aes(carat, depth, z = price)) + stat_summary_hex()#
+g <- ggplot_build(p)
+g
+names(g)
+g$data
+g$data[[1]]
+g$data[[1]]$value
+min(g$data[[1]]$value)
+max(g$data[[1]]$value)
+p <-ggplot(diamonds[1:500, ], aes(carat, depth, z = price)) + stat_summary_hex(fun=function(x)sum(x))#
+g <- ggplot_build(p)
+max(g$data[[1]]$value)
+g
+regexpr("a+", c("abc", "def", "cba a", "aa"), perl=TRUE)
+grep("a+", c("abc", "def", "cba a", "aa"), perl=TRUE)
+formula <- response ~ 1 + factor1A:factor2treat + factor1B:factor2treat+factor1A:factor2placebo+ factor1B:factor2placebo
+formula
+mode('if')
+quote(if(1) {print(2)})
+a <- quote(if(1) {print(2)})
+a
+class(a)
+mode(a)
+str(a)
+b <- quote(for(i in 1) {print(i)})
+class(b)
+b <- quote(mean(1))
+mode(b)
+class(b)
+class
+?mode
+library(googleVis)
+tbl1 <- gvisTable(Population)#
+> plot(tbl1)
+plot(tbl1)
+library(ggplot2)#
+names <- c(1,1,1,2,2,2,3,3,3)#
+xvals <- c(1:9)#
+yvals <- c(1,2,3,10,11,12,15,16,17)#
+pvals <- c(1.1,2.1,3.1,11,12,13,14,15,16)#
+ex_data <- data.frame(names,xvals,yvals,pvals)#
+ex_data$names <- factor(ex_data$names)#
+#
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='data', linetype='data'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='spreads', linetype='spreads'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+head(ex_data)
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='spread', linetype='spread'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='mean', linetype='mean'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='data', linetype='data'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='abc', linetype='abc'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='s', linetype='s'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='z', linetype='z'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='ab', linetype='ab'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='abd', linetype='abd'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='bd', linetype='bd'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='hoge', linetype='hoge'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+library(grid)
+?gpar
+??lty
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='zzz', linetype='zzz'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='a', linetype='a'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='s', linetype='s'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='s', linetype='s'))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='s', linetype='s'))    + + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='s', linetype='s'))    +  scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='s', linetype='s'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='s', linetype='s'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted')) + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='s', linetype='s'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted')) +  scale_shape_manual('', values=c(19, NA))
+?grid.points
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='g', linetype='g'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted')) +  scale_shape_manual('', values=c(19, NA))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='e', linetype='e'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted')) +  scale_shape_manual('', values=c(19, NA))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='z', linetype='z'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+ggplot(ex_data, aes(x=xvals, group=names))    + geom_point(aes(y=yvals, shape='e', linetype='e'))    + geom_line(aes(y=pvals, shape='fitted', linetype='fitted'))    + scale_shape_manual('', values=c(19, NA))    + scale_linetype_manual('', values=c(0, 1))
+library("ggplot2")#
+df <- data.frame(x = c(1, 4, 4, 1, 1, 2, 3, 3, 2, 2, 1), #
+                     y = c(2,2, 5, 5, 2, 3, 3, 4, 4, 3, 2), #
+                     hole = c(FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE))#
+ggplot(data=df) + geom_polygon(mapping=aes(x, y), fill="green")
+geom_polygon
+?geom_polygon
+index <- 1:nrow(df)#
+index[df$hole] <- rev(index[df$hole])#
+dfReversed <- df[index,]#
+ggplot(data=dfReversed) + geom_polygon(mapping=aes(x, y), fill="green")
+GeomPolygon$draw
+GeomPolygon$draw_groups
+ggplot2:::GeomPolygon$draw_groups
+ggplot2:::GeomPolygon$draw
+polygonGrob
+?polygonGrob
+grid.draw.polygon
+grid.draw
+methods(grid.draw)
+grid.draw.grob
+grid:::grid.draw.grob
+grid:::drawGrob
+grid:::drawDetails.polygon
+?grid.polygon
+x <- matrix(1:6, nrow=2, dimnames=list(c('a','b'),c('c','d','e')))#
+> h <- html(x)
+h <- html(x)
+library(Hmisc)
+h <- html(x)
+h
+?html
+library(xtable)
+?xtable
+system("alias")
+system("whoami")
+Data#
+require(ggplot2)#
+require(grid)#
+n <- 100#
+x <- y <- seq(-4*pi, 4*pi, len=n)#
+r <- cos( sqrt( outer(x^2, y^2, "+") ) ^ 2 )#
+df <- data.frame( x = rep( x , each = n) , y = rep( y , times = n ) , val = c(r) )#
+#
+#  Plot#
+ggplot( df , aes( x , y , fill = val ) )+#
+  geom_raster()+#
+  scale_fill_gradient( low = "#FFFFFF" , high = "#de2d26" )+#
+  guides( fill = guide_colourbar( barheight = unit( 3 , "in" ) ) )+#
+  theme_bw()+#
+  theme( line = element_line( colour = "#0000FF" ) )
+grid.ls()
+gr <- grid.get("guide-box", grep=TRUE)[[1]][[1]]
+gr
+gb <- grid.get("guide-box", grep=TRUE)[[1]][[1]]#
+gr <- gb$layout$name=="ticks"
+gr
+gb <- grid.get("guide-box", grep=TRUE)[[1]][[1]]#
+gr <- gb$grobs[[gb$layout$name=="ticks"]]
+gr
+gb <- grid.get("guide-box", grep=TRUE)[[1]][[1]]#
+gr <- gb$grobs[[which(gb$layout$name=="ticks")]]
+gr
+editGrob
+grid.draw
+grid.edit
+gr$name
+grid.remove(gr$name)
+grid.remove(gr$name, grep=TRUE)
+grid.remove(gr$name, grep=TRUE, global=TRUE)
+?grid.remove
+gr
+gr$name
+grid.get(gr$name)
+grid.get(gr$name, grep=T)
+?grid.get
+grid.ls
+grid.ls(gr)
+grid.get(gr)
+editGrob(gr)
+r <- editGrob(gr)
+r
+grid.edit
+?gPath
+gPath("g1", "g2")
+grid.ls()
+grid.force()
+grid.ls()
+?grid.force
+dev.off()
+Data#
+require(ggplot2)#
+require(grid)#
+n <- 100#
+x <- y <- seq(-4*pi, 4*pi, len=n)#
+r <- cos( sqrt( outer(x^2, y^2, "+") ) ^ 2 )#
+df <- data.frame( x = rep( x , each = n) , y = rep( y , times = n ) , val = c(r) )#
+#
+#  Plot#
+ggplot( df , aes( x , y , fill = val ) )+#
+  geom_raster()+#
+  scale_fill_gradient( low = "#FFFFFF" , high = "#de2d26" )+#
+  guides( fill = guide_colourbar( barheight = unit( 3 , "in" ) ) )+#
+  theme_bw()+#
+  theme( line = element_line( colour = "#0000FF" ) )
+grid.ls()
+gb <- grid.get("guide-box", grep=TRUE)[[1]][[1]]#
+gr <- gb$grobs[[which(gb$layout$name=="ticks")]]
+gr
+grid.edit
+grid.get("guide-box", grep=TRUE)
+str(grid.get("guide-box", grep=TRUE))
+gr
+str(gr)
+editGrob(gr, gp=gpar(col="black"))
+str(editGrob(gr, gp=gpar(col="black")))
+gb <- grid.get("guide-box", grep=TRUE)[[1]][[1]]#
+gr <- gb$grobs[[which(gb$layout$name=="ticks")]]#
+gb <- editGrob(gr, gp=gpar(col="black"))
+gb <- grid.get("guide-box", grep=TRUE)[[1]][[1]]#
+gr <- gb$grobs[[which(gb$layout$name=="ticks")]]#
+gb$grobs[[which(gb$layout$name=="ticks")]] <- editGrob(gr, gp=gpar(col="black"))
+Data#
+require(ggplot2)#
+require(grid)#
+n <- 100#
+x <- y <- seq(-4*pi, 4*pi, len=n)#
+r <- cos( sqrt( outer(x^2, y^2, "+") ) ^ 2 )#
+df <- data.frame( x = rep( x , each = n) , y = rep( y , times = n ) , val = c(r) )#
+#
+#  Plot#
+p <- ggplot( df , aes( x , y , fill = val ) )+#
+  geom_raster()+#
+  scale_fill_gradient( low = "#FFFFFF" , high = "#de2d26" )+#
+  guides( fill = guide_colourbar( barheight = unit( 3 , "in" ) ) )+#
+  theme_bw()+#
+  theme( line = element_line( colour = "#0000FF" ) )
+ggplot_gtable(p)
+?ggplot_gtable
+p
+ggplot_gtable(ggplot_build(p))
+g <- ggplot_gtable(ggplot_build(p))
+names(g)
+g$grobs
+g[["guide-box"]]
+g["guide-box"]
+library(gtable)
+gtable_filter(g, "guide_box")
+gtable_filter
+g$layout$name
+gtable_filter(g, "guide-box")
+g$grobs
+g$grobs[[8]]
+guide <- which(g$layout$name == "guide-box")
+guide
+g$grobs[[guide]]
+g$grobs[[guide]][[1]]
+g$grobs[[guide]][[1]][[1]]
+g$grobs[[guide]][[1]][[1]]$layout$name
+g$grobs[[guide]][[1]][[1]]$layout$name=="ticks"
+ticks <- which(g$grobs[[guide]][[1]][[1]]$layout$name=="ticks")
+g$grobs[[guide]][[1]][[1]]$grobs[[ticks]]
+g$grobs[[guide]][[1]][[1]]$grobs[[ticks]] <- editGrob(grob, gpar(col = "black"))
+grob
+grob <- g$grobs[[guide]][[1]][[1]]$grobs[[ticks]]
+g$grobs[[guide]][[1]][[1]]$grobs[[ticks]] <- editGrob(grob, gpar(col = "black"))
+grob
+editGrob(grob, gpar(col = "black"))
+str(grob)
+editGrob(grob)
+g <- ggplot_gtable(ggplot_build(p))#
+guide <- which(g$layout$name == "guide-box")#
+ticks <- which(g$grobs[[guide]][[1]][[1]]$layout$name=="ticks")#
+grob <- g$grobs[[guide]][[1]][[1]]$grobs[[ticks]]#
+g$grobs[[guide]][[1]][[1]]$grobs[[ticks]] <- editGrob(grob, gp = gpar(col = "black"))
+g
+grid.draw(g)
+hack it#
+g <- ggplot_gtable(ggplot_build(p))#
+guide <- which(g$layout$name == "guide-box")#
+ticks <- which(g$grobs[[guide]][[1]][[1]]$layout$name=="ticks")#
+grob <- g$grobs[[guide]][[1]][[1]]$grobs[[ticks]]#
+g$grobs[[guide]][[1]][[1]]$grobs[[ticks]] <- editGrob(grob, gp = gpar(col = "black", lwd = 3))#
+#
+# draw it#
+grid.draw(g)
+Sys.getenv("PATH")
+library(knitr)
+Sys.getenv("PATH")
+system2("platex")
+Sys.getenv("PATH")
+?withCallingHandlers
+setwd("~/Dropbox/Works/2014_B_kr_共立R本/draft/sample/slidify/")
+setwd(..)
+setwd("..")
+library(slidify)
+packageDescription("slidify")
+library(devtools)
+slidify
+?slidify
+library(devtools)#
+install_github("slidify", "ramnathv")#
+install_github("slidifyLibraries", "ramnathv")
+library(slidify)#
+author("slidify-minimal")
+library(slidify)#
+author("slidify-minimal")
+library(slidify)#
+author("slidify-minimal")
+setwd("~/Dropbox/Works/2014_B_kr_共立R本/draft/sample/")
+library(slidify)#
+author("slidify-minimal")
+library(slidify)#
+author("slidify-minimal")
+?author
+setwd("~/Dropbox/Works/2014_B_kr_共立R本/draft/sample/")
+library(slidify)#
+author("slidify-minimal")
